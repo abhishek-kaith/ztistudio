@@ -1,13 +1,21 @@
 name: push_cd
 
 on:
-  push:
-    branches: ["main"]
+    push:
+        branches: ['main']
 
 jobs:
-  build:
-    runs-on: self-hosted
-    steps:
-      - uses: actions/checkout@v3
-      - name: Start containers
-        run: docker compose -f  docker/docker-compose-prod.yml up -d --build
+    build:
+        runs-on: self-hosted
+        steps:
+            - uses: actions/checkout@v3
+            - name: Start containers
+              run: docker compose -f  docker/docker-compose-prod.yml up -d --build
+
+        step:
+            - name: Purge Cloudflare cache by zone id
+              run: |
+                  curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
+                  -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_KEY }}" \
+                  -H "Content-Type: application/json" \
+                  --data '{"purge_everything":true}'
