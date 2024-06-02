@@ -1,7 +1,8 @@
 import React from 'react'
 
 function Footer() {
-    return <div>Footer</div>
+    const data = new Date()
+    return <div>Footer {data.toLocaleDateString()}</div>
 }
 
 export default Footer
