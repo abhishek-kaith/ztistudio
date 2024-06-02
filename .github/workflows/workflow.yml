@@ -12,7 +12,6 @@ jobs:
             - name: Start containers
               run: docker compose -f  docker/docker-compose-prod.yml up -d --build
 
-        step:
             - name: Purge Cloudflare cache by zone id
               run: |
                   curl -X POST "https://api.cloudflare.com/client/v4/zones/${{ secrets.CLOUDFLARE_ZONE_ID }}/purge_cache" \
