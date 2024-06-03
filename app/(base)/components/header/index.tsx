@@ -7,29 +7,36 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { MobileMenu } from './mobile-menu'
 import NavMenu from './NavMenu'
+import HeaderWrapper from './header-wrapper'
 
 function Header() {
     return (
-        <header className="h-header flex justify-between items-center container">
-            <Link href="/" aria-label="Home">
-                <Logo />
-            </Link>
-            <NavMenu />
-            <div className="flex md:gap-4 items-center">
-                <Link
-                    href={'/contact'}
-                    className={cn(
-                        buttonVariants(),
-                        'hidden md:flex hover:bg-grt hover:text-white text-base font-medium'
-                    )}
-                >
-                    Get Started
-                    <SendHorizontal className="ml-2" height={18} width={18} />
+        <HeaderWrapper>
+            <header className="h-header flex justify-between items-center container z-50">
+                <Link href="/" aria-label="Home">
+                    <Logo />
                 </Link>
-                <ModeToggle />
-                <MobileMenu />
-            </div>
-        </header>
+                <NavMenu />
+                <div className="flex md:gap-4 items-center">
+                    <Link
+                        href={'/contact'}
+                        className={cn(
+                            buttonVariants(),
+                            'hidden md:flex hover:bg-grt hover:text-white text-base font-medium'
+                        )}
+                    >
+                        Get Started
+                        <SendHorizontal
+                            className="ml-2"
+                            height={18}
+                            width={18}
+                        />
+                    </Link>
+                    <ModeToggle />
+                    <MobileMenu />
+                </div>
+            </header>
+        </HeaderWrapper>
     )
 }
 
