@@ -1,5 +1,5 @@
 services:
-  metadata_frontend:
+  app:
     build: ./../.
     container_name: ztistudio
     environment:
